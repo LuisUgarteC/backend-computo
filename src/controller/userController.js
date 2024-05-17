@@ -30,14 +30,14 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { email, password } = req.body
+    const { email, password, nombre, apellido, telefono } = req.body
     const existingUser = await User.findByEmail(email)
     if (existingUser) {
       return res.status(400).json({
         message: 'User already exists'
       })
     }
-    const newUser = await User.createUser(email, password)
+    const newUser = await User.createUser(email, password, nombre, apellido, telefono)
     res.status(201).json({
       message: 'User registered successfully',
       user: newUser

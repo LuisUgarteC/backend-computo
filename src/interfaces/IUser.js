@@ -6,7 +6,7 @@ class IUser {
     @returns {Promise<User>}
     @throws {error}  si hay un error en la creación
   */
-  static async createUser (email, password) {}
+  static async createUser (email, password, nombre, apellido, telefono) {}
   static async findByEmail (email) {}
   async verifyPassword(password) {}
 }
