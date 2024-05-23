@@ -44,7 +44,11 @@ class User extends IUser {
         const userDoc = await user.get()
         if (userDoc.exists) {
           const userData = userDoc.data()
-          return new User(userData.email, userData.password)
+          return new User(
+            userData.email, 
+            userData.password, 
+            userData.nombre
+          )
         }
         return null
     } catch (error) {
