@@ -8,7 +8,6 @@ class User extends IUser {
     super()
     this.email = email
     this.password = password
-    // nombre, apellido, telefono, cumpleaños(?)
     this.nombre = nombre,
     this.apellido = apellido,
     this.telefono = telefono,
@@ -54,6 +53,22 @@ class User extends IUser {
     } catch (error) {
       console.log('Error => ', error)
       throw new Error ('Error finding user')
+    }
+  }
+
+  static async getAllUsers () {
+    try {
+      const users = await firestore.collection('users').get()
+      const foundUsers = []
+      users.forEach(doc => {
+        foundUsers.push({
+          email: doc.email,
+          ...doc.data()
+        })
+      })
+      return foundUsers
+    } catch (error) {
+      throw error
     }
   }
 }

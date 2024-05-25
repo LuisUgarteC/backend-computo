@@ -52,4 +52,18 @@ const registerUser = async (req, res) => {
   }
 }
 
-module.exports = { registerUser, loginUser }
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.getAllUsers()
+    res.json({
+      users,
+      message: 'success'
+    })  
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error'
+    })
+  }
+}
+
+module.exports = { registerUser, loginUser, getAllUsers }
