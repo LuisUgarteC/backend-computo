@@ -4,7 +4,7 @@ const firestore = admin.firestore()
 class Trip {
   constructor (userEmail, seats) {
     this.userEmail = userEmail
-    this.seats = seats // Array of seat objects {label: 'A1', passengerName: 'Juan', passengerType: 'Adulto'}
+    this.seats = seats // arreglo: lable, nombre, tipo
   }
 
   static async createTrip (userEmail, seats) {

@@ -2,7 +2,8 @@ const Trip = require('../models/Trip')
 
 const createTrip = async (req, res) => {
   try {
-    const { userEmail, seats } = req.body
+    const userEmail = req.user.email;
+    const { seats } = req.body
     const newTrip = await Trip.createTrip(userEmail, seats)
     res.status(201).json({
       message: 'Trip created successfully',
@@ -14,6 +15,7 @@ const createTrip = async (req, res) => {
     })
   }
 }
+
 
 const getAllTrips = async (req, res) => {
   try {
