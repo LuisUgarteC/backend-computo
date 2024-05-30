@@ -29,6 +29,28 @@ const getTravels = async (req, res) => {
   }
 };
 
+const getSeats = async (req, res) => {
+  try {
+    const { travelId } = req.query;
+    const tripSnapshot = await firestore.collection('trips').where('travelId', '==', travelId).get();
+
+    if (tripSnapshot.empty) {
+      return res.status(200).json({ seats: [] });
+    }
+
+    const seats = [];
+    tripSnapshot.forEach(doc => {
+      const data = doc.data();
+      seats.push(...data.seats);
+    });
+
+    res.status(200).json({ seats });
+  } catch (error) {
+    console.error('Error getting seats:', error);
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+};
+
 const addTravel = async (req, res) => {
   try {
     const newTravel = req.body;
@@ -41,4 +63,4 @@ const addTravel = async (req, res) => {
   }
 };
 
-module.exports = { getTravels, addTravel };
+module.exports = { getTravels, addTravel, getSeats };

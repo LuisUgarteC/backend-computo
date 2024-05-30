@@ -2,22 +2,24 @@ const admin = require('../config/firebase')
 const firestore = admin.firestore()
 
 class Trip {
-  constructor (userEmail, seats) {
-    this.userEmail = userEmail
-    this.seats = seats // arreglo: lable, nombre, tipo
+  constructor(userEmail, seats, travelId) {
+    this.userEmail = userEmail;
+    this.seats = seats; // arreglo: label, nombre, tipo
+    this.travelId = travelId; // Añadir travelId para identificar el viaje
   }
 
-  static async createTrip (userEmail, seats) {
+  static async createTrip(userEmail, seats, travelId) {
     try {
-      const trip = firestore.collection('trips').doc()
+      const trip = firestore.collection('trips').doc();
       await trip.set({
         userEmail,
-        seats
-      })
-      return new Trip(userEmail, seats)
+        seats,
+        travelId // Guardar travelId
+      });
+      return new Trip(userEmail, seats, travelId);
     } catch (error) {
-      console.log('Error => ', error)
-      throw new Error('Error creating trip')
+      console.log('Error => ', error);
+      throw new Error('Error creating trip');
     }
   }
 
