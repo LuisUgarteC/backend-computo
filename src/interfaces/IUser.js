@@ -1,11 +1,4 @@
 class IUser {
-  /* 
-    Crear un nuevo usuario
-    @param {string} email -> correo del usuario
-    @param {string} password -> password del usuario
-    @returns {Promise<User>}
-    @throws {error}  si hay un error en la creación
-  */
   static async createUser (email, password, nombre, apellido, telefono, cumple) {}
   static async findByEmail (email) {}
   async verifyPassword(password) {}

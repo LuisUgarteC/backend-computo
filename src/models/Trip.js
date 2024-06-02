@@ -14,7 +14,7 @@ class Trip {
       await trip.set({
         userEmail,
         seats,
-        travelId // Guardar travelId
+        travelId
       });
       return new Trip(userEmail, seats, travelId);
     } catch (error) {

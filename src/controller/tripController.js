@@ -3,7 +3,7 @@ const Trip = require('../models/Trip')
 const createTrip = async (req, res) => {
   try {
     const userEmail = req.user.email;
-    const { seats, travelId } = req.body;  // Asegurarse de que travelId se extrae del cuerpo de la solicitud
+    const { seats, travelId } = req.body;
     const newTrip = await Trip.createTrip(userEmail, seats, travelId);
     res.status(201).json({
       message: 'Trip created successfully',
